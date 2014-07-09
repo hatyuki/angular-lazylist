@@ -1,0 +1,26 @@
+{
+  "name": "angular-lazylist",
+  "author": "hatyuki <hatyuki29 at gmail.com",
+  "version": "0.0.1",
+  "description": "Lazy list built on AngularJS",
+  "license": "MIT",
+  "repository": "https://github.com/hatyuki/angular-lazylist.git",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.1",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-karma": "^0.8.3",
+    "grunt-newer": "^0.7.0",
+    "grunt-ngmin": "^0.0.3",
+    "jshint-stylish": "^0.2.0",
+    "karma": "^0.12.16",
+    "karma-jasmine": "^0.1.5",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "load-grunt-tasks": "^0.4.0",
+    "time-grunt": "^0.3.1"
+  }
+}
