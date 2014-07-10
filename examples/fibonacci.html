@@ -1,0 +1,39 @@
+<html>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="../dist/angular-lazylist.min.js"></script>
+  <script>
+  'use strict';
+
+  angular.module(
+    'myApp', ['angular-lazylist']
+  ).controller(
+    'MainCtrl', function ($q, $log, lazylist) {
+
+      var fib = lazylist(function (prev) {
+          $log.log('generate');
+          var deferred = $q.defer( );
+
+          if (prev && prev.prev( )) {
+            prev.prev( ).promise( ).then(function (a) {
+                prev.promise( ).then(function (b) {
+                    $log.log(a + ' + ' + b + ' = ' + (a + b));
+                    deferred.resolve(a + b);
+                });
+            });
+          } else if (prev) {
+            deferred.resolve(1);
+          } else {
+            deferred.resolve(0);
+          }
+          return deferred.promise;
+      });
+
+      fib.next( ).next( ).next( ).next( ).next( )
+         .next( ).next( ).next( ).next( ).next( )
+         .promise( ).then(function (v) { $log.log(v); });
+  });
+  </script>
+  <body ng-app="myApp" ng-controller="MainCtrl">
+    <h1>See console</h1>
+  </body>
+</html>

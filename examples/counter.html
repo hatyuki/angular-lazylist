@@ -1,0 +1,42 @@
+<html>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="../dist/angular-lazylist.min.js"></script>
+  <script>
+  'use strict';
+
+  angular.module(
+    'myApp', ['angular-lazylist']
+  ).controller(
+    'MainCtrl', function ($q, $log, lazylist) {
+
+      var counter = lazylist(function (prev) {
+          var deferred = $q.defer( );
+
+          if (prev) {
+            prev.promise( ).then(function (i) {
+                if (i < 10) {
+                  deferred.resolve(i+1);
+                } else {
+                  deferred.reject( );
+                }
+            });
+          } else {
+            deferred.resolve(0);
+          }
+          return deferred.promise;
+      });
+
+      for (var i = 0; i <= 13; i++) {
+        counter.promise( ).then(function (j) {
+            $log.log(j);
+          }, function ( ) {
+            $log.log('failed');
+        });
+        counter = counter.next( );
+      }
+  });
+  </script>
+  <body ng-app="myApp" ng-controller="MainCtrl">
+    <h1>See console</h1>
+  </body>
+</html>
